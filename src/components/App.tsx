@@ -1,9 +1,9 @@
-import { Container } from './';
+import { Container, Navigation } from "./";
 
 const App: React.FC = () => {
   return (
     <Container>
-      <div>HEllO</div>
+      <Navigation />
     </Container>
   );
 };

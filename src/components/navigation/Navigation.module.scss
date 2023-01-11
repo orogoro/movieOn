@@ -1,0 +1,127 @@
+@import "../../styles/variables.scss";
+
+.header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px;
+  border-bottom: 1px solid $lightColor;
+  background-color: $headerBackgroundColor;
+  z-index: 999;
+
+  //   @media screen and (max-width: $mobileMedia) {
+  //     padding: 10px 14px;
+  //   }
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.containerLogo {
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  width: 40px;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  background-color: $lightColor;
+  border-radius: 20%;
+  padding: 3px;
+}
+
+.textLogo {
+  font-size: 30px;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.spanLogo {
+  color: $orangeColor;
+  font-size: 32px;
+}
+
+.link {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 110%;
+  text-decoration: none;
+  color: $lightColor;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-bottom: 5px;
+
+  &:hover {
+    color: $hoverOrangeColor;
+  }
+  & + & {
+    margin-left: 50px;
+  }
+}
+
+.active {
+  color: $hoverOrangeColor;
+}
+
+.singIn {
+  color: $orangeColor;
+  background-color: transparent;
+  position: relative;
+  border: none;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 1px;
+    background: $hoverOrangeColor;
+    position: absolute;
+    bottom: 4px;
+    transition: 0.3s;
+    opacity: 0;
+    left: 0px;
+  }
+
+  &:hover::after {
+    width: 100%;
+    opacity: 1;
+  }
+
+  &:hover {
+    color: $hoverOrangeColor;
+  }
+}
+
+.activeLink {
+  color: $hoverOrangeColor;
+
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 1px;
+    background: $hoverOrangeColor;
+    position: absolute;
+    bottom: 4px;
+    transition: 0.3s;
+    opacity: 1;
+    left: 0px;
+  }
+}

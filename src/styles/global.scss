@@ -1,5 +1,5 @@
 @import-normalize; /* bring in normalize.css styles */
-@import './variables';
+@import "./variables";
 
 * {
   box-sizing: border-box;
@@ -12,13 +12,13 @@ html {
 body {
   margin: 0;
 
-  font-family: -apple-system, BlinkMacSystemFont, 'Manrope', 'Segoe UI',
-    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Manrope", "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $bakgroundColor;
-  color: $textColor;
+  // background-color: $lightColor;
+  color: $lightColor;
 
   //   overflow: overlay;
 }
@@ -33,7 +33,7 @@ body::-webkit-scrollbar {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -68,20 +68,20 @@ input:-webkit-autofill:focus {
 }
 
 /* clears the ‘X’ in input from Internet Explorer */
-input[type='search']::-ms-clear {
+input[type="search"]::-ms-clear {
   display: none;
   width: 0;
   height: 0;
 }
-input[type='search']::-ms-reveal {
+input[type="search"]::-ms-reveal {
   display: none;
   width: 0;
   height: 0;
 }
 /* clears the ‘X’ in input from Chrome */
-input[type='search']::-webkit-search-decoration,
-input[type='search']::-webkit-search-cancel-button,
-input[type='search']::-webkit-search-results-button,
-input[type='search']::-webkit-search-results-decoration {
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
