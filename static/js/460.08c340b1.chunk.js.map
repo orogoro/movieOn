@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/460.08c340b1.chunk.js","mappings":"+GAIA,UAJ6B,WAC3B,OAAO,IACT,C","sources":["pages/MoviesPage.tsx"],"sourcesContent":["const MoviesPage: React.FC = () => {\n  return null;\n};\n\nexport default MoviesPage;\n"],"names":[],"sourceRoot":""}
