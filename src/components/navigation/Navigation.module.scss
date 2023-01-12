@@ -1,14 +1,10 @@
 @import "../../styles/variables.scss";
 
 .header {
-  position: sticky;
-  top: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-
-  padding: 20px;
-  border-bottom: 1px solid $lightColor;
+  justify-content: center;
+  position: sticky;
   background-color: $headerBackgroundColor;
   z-index: 999;
 
@@ -21,7 +17,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: $desktop;
+  padding: 20px;
+  border-bottom: 1px solid $lightColor;
 }
 
 .container {
@@ -38,25 +36,16 @@
   width: 40px;
 }
 
-// .back {
-//   display: flex;
-//   align-items: center;
-//   background-color: $lightColor;
-//   border-radius: 20%;
-//   padding: 3px;
-// }
-
 .textLogo {
   font-size: 30px;
   font-weight: 600;
   margin-left: 5px;
-  background-color: transparent;
+  color: $lightColor;
 }
 
 .spanLogo {
   color: $textColor;
   font-size: 30px;
-  background-color: transparent;
   box-shadow: 0 0px 20px #fec88e;
   border-radius: 30%;
   margin-left: 5px;
