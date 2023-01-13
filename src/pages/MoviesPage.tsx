@@ -1,5 +1,7 @@
+import { Movies } from "../components";
+
 const MoviesPage: React.FC = () => {
-  return null;
+  return <Movies />;
 };
 
 export default MoviesPage;

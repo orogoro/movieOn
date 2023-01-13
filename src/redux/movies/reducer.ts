@@ -1,28 +1,24 @@
-// import { combineReducers } from "redux";
-// // import { createReducer } from "@reduxjs/toolkit";
+import { combineReducers } from "redux";
+import { createReducer } from "@reduxjs/toolkit";
 
-// // import { fetchMovies } from "./operations";
+import { fetchMovies } from "./operations";
 
-// interface MovieState {
-//   data: any[];
-// }
+type MovieState = {
+  data: any[];
+};
 
-// interface ActionMovies {
-//   data: any[];
-// }
+const initialState: MovieState = {
+  data: [],
+};
 
-// const initialState: MovieState = {
-//   data: [],
-// };
+const moviesTrendsReducer = createReducer(initialState, (builder) => {
+  builder.addCase(fetchMovies.fulfilled, (state, { payload }) => {
+    state.data = [...payload];
+  });
+});
 
-// // const colectionsItemReducer = createReducer(initialState, {
-// //   [fetchMovies.fulfilled]: (state, { payload }: { payload: ActionMovies }) => {
-// //     state.data = [...payload.data];
-// //   },
-// // });
+const moviesReducer = combineReducers({
+  moviesTrendsReducer,
+});
 
-// const moviesReducer = combineReducers({
-//   //   colectionsItemReducer,
-// });
-
-// export { moviesReducer };
+export { moviesReducer };

@@ -5,16 +5,10 @@ export const movies = axios.create({
 });
 const API_KEY = "?api_key=a8a4168eeeb623f39ee02028275e7a3e";
 
-// interface Employee {
-//   id: number;
-//   name: string;
-// }
-
 async function getMoviesRequest(): Promise<any | undefined> {
   try {
     let response = await movies.get(`/trending/movie/day${API_KEY}`);
-    console.log(response);
-    return response;
+    return response.data.results;
   } catch (error) {
     console.log(error);
     if (axios.isCancel(error)) {
