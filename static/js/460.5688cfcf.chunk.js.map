@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/460.5688cfcf.chunk.js","mappings":"qIAMA,UAJ6B,WAC3B,OAAO,SAAC,KAAM,GAChB,C","sources":["pages/MoviesPage.tsx"],"sourcesContent":["import { Movies } from \"../components\";\n\nconst MoviesPage: React.FC = () => {\n  return <Movies />;\n};\n\nexport default MoviesPage;\n"],"names":[],"sourceRoot":""}
