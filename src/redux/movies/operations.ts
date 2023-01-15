@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getMoviesRequest } from "../../API/APImovies";
+import { getMoviesRequest, getMoviesGenre } from "../../API/APImovies";
 
 interface MoviesItem {
   poster_path: string | null;
@@ -19,6 +19,10 @@ interface MoviesItem {
   total_pages: number;
   total_results: number;
 }
+interface GenresType {
+  id: number;
+  name: string;
+}
 
 const fetchMovies = createAsyncThunk<
   MoviesItem[],
@@ -33,4 +37,17 @@ const fetchMovies = createAsyncThunk<
   }
 });
 
-export { fetchMovies };
+const fetchGenre = createAsyncThunk<
+  GenresType[],
+  undefined,
+  { rejectValue: any }
+>("movies/fetchGenre", async (_, { rejectWithValue }: any) => {
+  try {
+    const response = await getMoviesGenre();
+    return response;
+  } catch (error) {
+    return rejectWithValue(error);
+  }
+});
+
+export { fetchMovies, fetchGenre };
