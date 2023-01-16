@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/movieOn/static/css/main.42c472d8.css",
-    "main.js": "/movieOn/static/js/main.e7aa73f8.js",
-    "static/js/460.726aae51.chunk.js": "/movieOn/static/js/460.726aae51.chunk.js",
+    "main.css": "/movieOn/static/css/main.46d2afc3.css",
+    "main.js": "/movieOn/static/js/main.e3b979c1.js",
+    "static/js/460.584e139e.chunk.js": "/movieOn/static/js/460.584e139e.chunk.js",
     "static/js/846.df05c0b0.chunk.js": "/movieOn/static/js/846.df05c0b0.chunk.js",
     "index.html": "/movieOn/index.html",
-    "main.42c472d8.css.map": "/movieOn/static/css/main.42c472d8.css.map",
-    "main.e7aa73f8.js.map": "/movieOn/static/js/main.e7aa73f8.js.map",
-    "460.726aae51.chunk.js.map": "/movieOn/static/js/460.726aae51.chunk.js.map",
+    "main.46d2afc3.css.map": "/movieOn/static/css/main.46d2afc3.css.map",
+    "main.e3b979c1.js.map": "/movieOn/static/js/main.e3b979c1.js.map",
+    "460.584e139e.chunk.js.map": "/movieOn/static/js/460.584e139e.chunk.js.map",
     "846.df05c0b0.chunk.js.map": "/movieOn/static/js/846.df05c0b0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.42c472d8.css",
-    "static/js/main.e7aa73f8.js"
+    "static/css/main.46d2afc3.css",
+    "static/js/main.e3b979c1.js"
   ]
 }
