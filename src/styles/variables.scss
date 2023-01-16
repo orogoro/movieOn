@@ -14,9 +14,12 @@ $activeColor: #2282f1;
 $activeLinkColor: #64a4ee;
 $orangeColor: #f27c32;
 $hoverOrangeColor: #e7884d;
-// $primaryGrayColor: rgba(17, 17, 17, 0.6);
+$primaryGrayColor: #1e1e35;
 // $secondaryGrayColor: #535353;
 // $errorColor: #d60202;
+
+// animation
+$transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
 // // shadows
 // $primaryShadow: 7px 4px 14px rgba(0, 0, 0, 0.11);

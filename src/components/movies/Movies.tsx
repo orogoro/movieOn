@@ -1,8 +1,12 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../redux/hook";
 
 import { getMovies, getGenres } from "../../redux/movies/selectors";
-import { fetchMovies, fetchGenre } from "../../redux/movies/operations";
+import {
+  fetchMovies,
+  fetchGenre,
+  fetchOneMovie,
+} from "../../redux/movies/operations";
 
 import { MoviesItem } from "../";
 
@@ -12,7 +16,13 @@ const Movies: React.FC = () => {
   const moviesList = useAppSelector(getMovies);
   const genres = useAppSelector(getGenres);
   const dispatch = useAppDispatch();
-  //   console.log(genres);
+
+  const getById = useCallback(
+    (id: number): void => {
+      dispatch(fetchOneMovie(id));
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     dispatch(fetchMovies());
@@ -23,7 +33,12 @@ const Movies: React.FC = () => {
     <div className={styles.container}>
       <ul className={styles.list}>
         {moviesList.map((item) => (
-          <MoviesItem key={item.id} data={item} genres={genres} />
+          <MoviesItem
+            key={item.id}
+            data={item}
+            genres={genres}
+            getById={getById}
+          />
         ))}
       </ul>
     </div>
