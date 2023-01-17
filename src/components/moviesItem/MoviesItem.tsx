@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import { IMAGEURL } from "../../API/APImovies";
 import starFull from "../../images/starFull.png";
 import starHalf from "../../images/starHalf.png";
@@ -30,10 +32,9 @@ interface MoviesItemsProps {
       name: string;
     }
   ];
-  getById(id: number): void;
 }
 
-const MoviesItem: React.FC<MoviesItemsProps> = ({ data, genres, getById }) => {
+const MoviesItem: React.FC<MoviesItemsProps> = ({ data, genres }) => {
   const {
     poster_path,
     original_title,
@@ -58,13 +59,15 @@ const MoviesItem: React.FC<MoviesItemsProps> = ({ data, genres, getById }) => {
       : getGenres.map((item) => item.name).join(", ");
 
   return (
-    <li className={styles.item} onClick={() => getById(id)}>
+    <Link className={styles.item} to={`${id}`}>
       <div className={styles.containerImage}>
-        <img
-          className={styles.image}
-          src={`${IMAGEURL}${poster_path}`}
-          alt={title || original_title}
-        />
+        {poster_path && (
+          <img
+            className={styles.image}
+            src={`${IMAGEURL}${poster_path}`}
+            alt={title || original_title}
+          />
+        )}
       </div>
       <div className={styles.containerText}>
         <h2 className={styles.title}>{original_title}</h2>
@@ -92,7 +95,7 @@ const MoviesItem: React.FC<MoviesItemsProps> = ({ data, genres, getById }) => {
           </div>
         </div>
       </div>
-    </li>
+    </Link>
   );
 };
 

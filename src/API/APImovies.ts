@@ -39,7 +39,7 @@ async function getMoviesGenre(): Promise<any | undefined> {
     }
   }
 }
-async function getMovie(id: number): Promise<any | undefined> {
+async function getMovie(id: string): Promise<any | undefined> {
   try {
     let response = await movies.get(`/movie/${id}${API_KEY}&language=en-US`);
     return response.data;
@@ -54,4 +54,35 @@ async function getMovie(id: number): Promise<any | undefined> {
   }
 }
 
-export { getMoviesRequest, getMoviesGenre, getMovie };
+async function getCredits(id: string): Promise<any | undefined> {
+  try {
+    let response = await movies.get(
+      `/movie/${id}/credits${API_KEY}&language=en-US`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    if (axios.isCancel(error)) {
+      return Promise.reject();
+    } else {
+      console.log("Error", error);
+      return;
+    }
+  }
+}
+async function getImages(id: string): Promise<any | undefined> {
+  try {
+    let response = await movies.get(`/movie/${id}/images${API_KEY}`);
+    return response.data.posters;
+  } catch (error) {
+    console.log(error);
+    if (axios.isCancel(error)) {
+      return Promise.reject();
+    } else {
+      console.log("Error", error);
+      return;
+    }
+  }
+}
+
+export { getMoviesRequest, getMoviesGenre, getMovie, getCredits, getImages };

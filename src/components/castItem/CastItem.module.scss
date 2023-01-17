@@ -1,0 +1,11 @@
+@import "../../styles/variables.scss";
+
+.link {
+  font-size: 16px;
+  color: $lightColor;
+  transition: $transition;
+
+  &:hover {
+    color: $hoverOrangeColor;
+  }
+}

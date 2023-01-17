@@ -5,6 +5,7 @@ import { Container, Navigation } from "./";
 
 const Movies = lazy(() => import("../pages/MoviesPage"));
 const Home = lazy(() => import("../pages/HomePage"));
+const MovieDetails = lazy(() => import("../pages/MovieDetailsPage"));
 
 const App: React.FC = () => {
   return (
@@ -14,9 +15,8 @@ const App: React.FC = () => {
         <Suspense fallback={"Loading..."}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="Movies" element={<Movies />}>
-              {/* <Route path=":itemId" element={<ShopsMenuList />} />e */}
-            </Route>
+            <Route path="Movies" element={<Movies />} />
+            <Route path="Movies/:itemId" element={<MovieDetails />} />
 
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

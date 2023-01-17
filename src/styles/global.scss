@@ -85,3 +85,8 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: $orangeColor;
+}
