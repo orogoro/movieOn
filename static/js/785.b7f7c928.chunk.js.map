@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/785.b7f7c928.chunk.js","mappings":"uIAMA,UAJmC,WACjC,OAAO,SAAC,KAAY,GACtB,C","sources":["pages/MovieDetailsPage.tsx"],"sourcesContent":["import { MovieDetails } from \"../components\";\n\nconst MovieDetailsPage: React.FC = () => {\n  return <MovieDetails />;\n};\n\nexport default MovieDetailsPage;\n"],"names":[],"sourceRoot":""}
