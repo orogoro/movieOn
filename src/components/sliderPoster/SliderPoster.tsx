@@ -1,15 +1,12 @@
+import { useCallback } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, A11y } from "swiper";
 
-import { SliderItem } from "../";
+import SliderItem from "./sliderItem/SliderItem";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-
-import styles from "./Slider.module.scss";
-import { useCallback } from "react";
+import styles from "./SliderPoster.module.scss";
 
 type SliderType = {
   height: number;
@@ -26,7 +23,7 @@ interface SliderProps {
   setImagePoster: (url: string) => void;
 }
 
-const Slider: React.FC<SliderProps> = ({ images, setImagePoster }) => {
+const SliderPoster: React.FC<SliderProps> = ({ images, setImagePoster }) => {
   const getImageUrl = useCallback(
     (url: string): void => {
       setImagePoster(url);
@@ -51,4 +48,4 @@ const Slider: React.FC<SliderProps> = ({ images, setImagePoster }) => {
   );
 };
 
-export default Slider;
+export default SliderPoster;

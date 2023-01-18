@@ -12,5 +12,13 @@ export const getOneMovie = (state: RootState) =>
 export const getCredits = (state: RootState) =>
   state.movies.moviesTrendsReducer.credits;
 
-export const getImages = (state: RootState) =>
-  state.movies.moviesTrendsReducer.images;
+export const getPosters = (state: RootState) =>
+  state.movies.moviesTrendsReducer.posters;
+
+export const getBackImg = (state: RootState) =>
+  state.movies.moviesTrendsReducer.backImg;
+
+export const getVideos = (state: RootState) => state.movies.videoReducer.videos;
+
+export const loadingVideo = (state: RootState) =>
+  state.movies.videoReducer.loading;

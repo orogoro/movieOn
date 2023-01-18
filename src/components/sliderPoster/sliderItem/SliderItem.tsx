@@ -1,4 +1,4 @@
-import { IMAGEURL } from "../../API/APImovies";
+import { IMAGEURL } from "../../../API/APImovies";
 
 import styles from "./SliderItem.module.scss";
 
@@ -12,7 +12,7 @@ const SliderItem: React.FC<SliderItemProps> = ({ image, onClick }) => {
     <img
       className={styles.image}
       src={`${IMAGEURL}${image}`}
-      alt="poster"
+      alt="foto"
       onClick={() => onClick(image)}
     />
   );

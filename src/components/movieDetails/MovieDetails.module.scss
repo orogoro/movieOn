@@ -2,10 +2,17 @@
 
 .container {
   display: flex;
+  flex-direction: column;
   margin-top: 50px;
   padding: 20px 10px;
   border-radius: 5px;
   background-color: $primaryGrayColor;
+}
+
+.containerContent {
+  display: flex;
+  border-bottom: 1px solid $bodyBackgroundColor;
+  padding-bottom: 20px;
 }
 
 .image {
@@ -79,4 +86,42 @@
 
 .containerImage {
   width: 300px;
+}
+
+.containerVideo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.iframe {
+  position: relative;
+  background-color: $bodyBackgroundColor;
+  border-radius: 8px;
+  width: 710px;
+  height: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.textPrevue {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  display: flex;
+  align-items: center;
+  color: $whiteColor;
+  font-weight: 500;
+  font-size: 20px;
+  z-index: 900;
+}
+
+.videoYouTube {
+  width: 80px;
+  margin-left: 10px;
+}
+
+.sliderBackImages {
+  margin-top: 50px;
 }

@@ -5,6 +5,7 @@ import {
   getMovie,
   getCredits,
   getImages,
+  getVideos,
 } from "../../API/APImovies";
 
 interface MoviesItem {
@@ -36,7 +37,7 @@ interface CreditsType {
   crew: any[];
 }
 
-interface CreditsType {
+interface ImagesArrayType {
   height: number;
   aspect_ratio: number;
   file_path: string;
@@ -44,6 +45,26 @@ interface CreditsType {
   vote_average: number;
   vote_count: number;
   width: number;
+}
+
+interface ImagesType {
+  id: number;
+  backdrops: ImagesArrayType[];
+  posters: ImagesArrayType[];
+  logos: ImagesArrayType[];
+}
+
+interface VideosType {
+  id: string;
+  iso_639_1: string;
+  iso_3166_1: string;
+  key: string;
+  name: string;
+  official: true;
+  published_at: string;
+  site: string;
+  size: number;
+  type: string;
 }
 
 const fetchMovies = createAsyncThunk<
@@ -97,17 +118,36 @@ const fetchCredits = createAsyncThunk<
   }
 });
 
-const fetchImages = createAsyncThunk<
-  CreditsType[],
+const fetchImages = createAsyncThunk<ImagesType, string, { rejectValue: any }>(
+  "movies/fetchImages",
+  async (id, { rejectWithValue }: any) => {
+    try {
+      const response = await getImages(id);
+      return response as ImagesType;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+const fetchVideos = createAsyncThunk<
+  VideosType[],
   string,
   { rejectValue: any }
->("movies/fetchImages", async (id, { rejectWithValue }: any) => {
+>("movies/fetchVideos", async (id, { rejectWithValue }: any) => {
   try {
-    const response = await getImages(id);
-    return response;
+    const response = await getVideos(id);
+    return response as VideosType;
   } catch (error) {
     return rejectWithValue(error);
   }
 });
 
-export { fetchMovies, fetchGenre, fetchOneMovie, fetchCredits, fetchImages };
+export {
+  fetchMovies,
+  fetchGenre,
+  fetchOneMovie,
+  fetchCredits,
+  fetchImages,
+  fetchVideos,
+};

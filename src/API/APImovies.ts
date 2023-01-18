@@ -73,7 +73,7 @@ async function getCredits(id: string): Promise<any | undefined> {
 async function getImages(id: string): Promise<any | undefined> {
   try {
     let response = await movies.get(`/movie/${id}/images${API_KEY}`);
-    return response.data.posters;
+    return response.data;
   } catch (error) {
     console.log(error);
     if (axios.isCancel(error)) {
@@ -85,4 +85,26 @@ async function getImages(id: string): Promise<any | undefined> {
   }
 }
 
-export { getMoviesRequest, getMoviesGenre, getMovie, getCredits, getImages };
+async function getVideos(id: string): Promise<any | undefined> {
+  try {
+    let response = await movies.get(`/movie/${id}/videos${API_KEY}`);
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+    if (axios.isCancel(error)) {
+      return Promise.reject();
+    } else {
+      console.log("Error", error);
+      return;
+    }
+  }
+}
+
+export {
+  getMoviesRequest,
+  getMoviesGenre,
+  getMovie,
+  getCredits,
+  getImages,
+  getVideos,
+};

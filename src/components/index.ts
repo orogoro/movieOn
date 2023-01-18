@@ -4,8 +4,9 @@ import Movies from "./movies/Movies";
 import MoviesItem from "./moviesItem/MoviesItem";
 import MovieDetails from "./movieDetails/MovieDetails";
 import CastItem from "./castItem/CastItem";
-import Slider from "./slider/Slider";
-import SliderItem from "./sliderItem/SliderItem";
+import SliderPoster from "./sliderPoster/SliderPoster";
+import Video from "./video/Video";
+import SliderBackImages from "./sliderBackImages/SliderBackImages";
 
 export {
   Container,
@@ -14,6 +15,7 @@ export {
   MoviesItem,
   MovieDetails,
   CastItem,
-  Slider,
-  SliderItem,
+  SliderPoster,
+  Video,
+  SliderBackImages,
 };
