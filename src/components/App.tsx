@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
-import { Container, Navigation } from "./";
+import { Container, Navigation, Loader } from "./";
 
 const Movies = lazy(() => import("../pages/MoviesPage"));
 const Home = lazy(() => import("../pages/HomePage"));
@@ -12,7 +12,7 @@ const App: React.FC = () => {
     <>
       <Navigation />
       <Container>
-        <Suspense fallback={"Loading..."}>
+        <Suspense fallback={<Loader size={70} styles={""} />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="Movies" element={<Movies />} />
