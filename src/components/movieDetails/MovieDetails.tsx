@@ -2,20 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { useAppSelector, useAppDispatch } from "../../redux/hook";
-import {
-  fetchOneMovie,
-  fetchCredits,
-  fetchImages,
-  fetchVideos,
-} from "../../redux/movies/operations";
-import {
-  getOneMovie,
-  getCredits,
-  getPosters,
-  getVideos,
-  loadingVideo,
-  getBackImg,
-} from "../../redux/movies/selectors";
+
+import { operations, selectors } from "../../redux/movies";
 
 import { CastItem, SliderPoster, Video, SliderBackImages } from "../";
 
@@ -29,12 +17,13 @@ import styles from "./MovieDetails.module.scss";
 
 const MovieDetails: React.FC = () => {
   const { itemId } = useParams();
-  const manualMovie = useAppSelector(getOneMovie);
-  const credits = useAppSelector(getCredits);
-  const posters = useAppSelector(getPosters);
-  const backImg = useAppSelector(getBackImg);
-  const videos = useAppSelector(getVideos);
-  const loading = useAppSelector(loadingVideo);
+  const manualMovie = useAppSelector(selectors.getOneMovie);
+  const credits = useAppSelector(selectors.getCredits);
+  const posters = useAppSelector(selectors.getPosters);
+  const backImg = useAppSelector(selectors.getBackImg);
+  const videos = useAppSelector(selectors.getVideos);
+  const loading = useAppSelector(selectors.loadingVideo);
+  const errorVideo = useAppSelector(selectors.errorgVideo);
   const dispatch = useAppDispatch();
   const [imagePoster, setImagePoster] = useState<string | null>(null);
 
@@ -54,10 +43,10 @@ const MovieDetails: React.FC = () => {
     if (!itemId) {
       return;
     }
-    dispatch(fetchOneMovie(itemId));
-    dispatch(fetchImages(itemId));
-    dispatch(fetchCredits(itemId));
-    dispatch(fetchVideos(itemId));
+    dispatch(operations.fetchOneMovie(itemId));
+    dispatch(operations.fetchImages(itemId));
+    dispatch(operations.fetchCredits(itemId));
+    dispatch(operations.fetchVideos(itemId));
   }, [dispatch, itemId]);
 
   return (
@@ -154,9 +143,13 @@ const MovieDetails: React.FC = () => {
       <div className={styles.containerVideo}>
         {!loading && (
           <div className={styles.iframe}>
-            <Video idVideos={idVideos} />
-            <div className={styles.textPrevue}>
-              Trailer
+            {!errorVideo && <Video idVideos={idVideos} />}
+            <div
+              className={`${styles.textPrevue} ${
+                errorVideo ? styles.errorStyles : ""
+              }`}
+            >
+              {errorVideo ? "Oops, something went wrong " : "Trailer"}
               <img
                 className={styles.videoYouTube}
                 src={videoYouTube}

@@ -69,11 +69,11 @@ interface VideosType {
 
 const fetchMovies = createAsyncThunk<
   MoviesItem[],
-  undefined,
+  number,
   { rejectValue: any }
->("movies/fetchMovies", async (_, { rejectWithValue }: any) => {
+>("movies/fetchMovies", async (page, { rejectWithValue }: any) => {
   try {
-    const response = await getMoviesRequest();
+    const response = await getMoviesRequest(page);
     return response as MoviesItem;
   } catch (error) {
     return rejectWithValue(error);

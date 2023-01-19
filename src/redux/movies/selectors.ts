@@ -22,3 +22,6 @@ export const getVideos = (state: RootState) => state.movies.videoReducer.videos;
 
 export const loadingVideo = (state: RootState) =>
   state.movies.videoReducer.loading;
+
+export const errorgVideo = (state: RootState) =>
+  state.movies.videoReducer.error;

@@ -7,6 +7,7 @@ import CastItem from "./castItem/CastItem";
 import SliderPoster from "./sliderPoster/SliderPoster";
 import Video from "./video/Video";
 import SliderBackImages from "./sliderBackImages/SliderBackImages";
+import Loader from "./loader/Loader";
 
 export {
   Container,
@@ -18,4 +19,5 @@ export {
   SliderPoster,
   Video,
   SliderBackImages,
+  Loader,
 };

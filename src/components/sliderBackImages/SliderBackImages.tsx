@@ -22,7 +22,6 @@ interface SliderProps {
 }
 
 const SliderBackImages: React.FC<SliderProps> = ({ images }) => {
-  console.log(images);
   return (
     <Swiper
       className={styles.container}

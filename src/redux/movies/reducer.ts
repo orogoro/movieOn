@@ -9,6 +9,7 @@ import {
   fetchImages,
   fetchVideos,
 } from "./operations";
+import { moviesAction } from "./action";
 
 type MovieState = {
   data: any[];
@@ -22,6 +23,7 @@ type MovieState = {
 type VideoReducerTypes = {
   videos: any[];
   loading: boolean;
+  error: boolean;
 };
 
 const initialState: MovieState = {
@@ -36,7 +38,10 @@ const initialState: MovieState = {
 const moviesTrendsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchMovies.fulfilled, (state, { payload }) => {
-      state.data = [...payload];
+      state.data = [...state.data, ...payload];
+    })
+    .addCase(moviesAction, (state, { payload }) => {
+      state.data = payload;
     })
     .addCase(fetchGenre.fulfilled, (state, { payload }) => {
       state.genres = [...payload];
@@ -56,6 +61,7 @@ const moviesTrendsReducer = createReducer(initialState, (builder) => {
 const initialStateVideos: VideoReducerTypes = {
   videos: [],
   loading: false,
+  error: false,
 };
 
 const videoReducer = createReducer(initialStateVideos, (builder) => {
@@ -63,9 +69,15 @@ const videoReducer = createReducer(initialStateVideos, (builder) => {
     .addCase(fetchVideos.fulfilled, (state, { payload }) => {
       state.videos = [...payload];
       state.loading = false;
+      state.error = false;
     })
     .addCase(fetchVideos.pending, (state) => {
       state.loading = true;
+      state.error = false;
+    })
+    .addCase(fetchVideos.rejected, (state) => {
+      state.loading = false;
+      state.error = true;
     });
 });
 

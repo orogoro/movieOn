@@ -9,9 +9,11 @@ export const movies = axios.create({
   baseURL: `${BASEURL}`,
 });
 
-async function getMoviesRequest(): Promise<any | undefined> {
+async function getMoviesRequest(page: number): Promise<any | undefined> {
   try {
-    let response = await movies.get(`/trending/movie/day${API_KEY}`);
+    let response = await movies.get(
+      `/trending/movie/day${API_KEY}&page=${page}`
+    );
     return response.data.results;
   } catch (error) {
     console.log(error);
