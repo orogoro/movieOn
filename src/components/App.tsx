@@ -6,7 +6,6 @@ import { Container, Navigation, Loader } from "./";
 const Movies = lazy(() => import("../pages/MoviesPage"));
 const Home = lazy(() => import("../pages/HomePage"));
 const MovieDetails = lazy(() => import("../pages/MovieDetailsPage"));
-// commit
 
 const App: React.FC = () => {
   return (
