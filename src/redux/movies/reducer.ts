@@ -8,6 +8,7 @@ import {
   fetchCredits,
   fetchImages,
   fetchVideos,
+  fetchReviews,
 } from "./operations";
 import { moviesAction } from "./action";
 
@@ -18,6 +19,7 @@ type MovieState = {
   credits: any[];
   posters: any[];
   backImg: any[];
+  reviews: any[];
 };
 
 type VideoReducerTypes = {
@@ -33,6 +35,7 @@ const initialState: MovieState = {
   credits: [],
   posters: [],
   backImg: [],
+  reviews: [],
 };
 
 const moviesTrendsReducer = createReducer(initialState, (builder) => {
@@ -55,6 +58,9 @@ const moviesTrendsReducer = createReducer(initialState, (builder) => {
     .addCase(fetchImages.fulfilled, (state, { payload }) => {
       state.posters = [...payload?.posters];
       state.backImg = [...payload?.backdrops];
+    })
+    .addCase(fetchReviews.fulfilled, (state, { payload }) => {
+      state.reviews = [...payload];
     });
 });
 

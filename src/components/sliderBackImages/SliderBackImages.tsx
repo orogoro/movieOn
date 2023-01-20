@@ -1,24 +1,16 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, A11y } from "swiper";
 
+import { moviesTypes } from "../../types";
+
 import SliderItem from "./sliderItem/SliderItem";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import styles from "./SliderBackImages.module.scss";
 
-type SliderType = {
-  height: number;
-  aspect_ratio: number;
-  file_path: string;
-  iso_639_1: string | null;
-  vote_average: number;
-  vote_count: number;
-  width: number;
-};
-
 interface SliderProps {
-  images: SliderType[];
+  images: moviesTypes.ImagesArrayType[];
 }
 
 const SliderBackImages: React.FC<SliderProps> = ({ images }) => {

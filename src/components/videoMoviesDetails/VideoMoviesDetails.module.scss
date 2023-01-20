@@ -1,0 +1,43 @@
+@import "../../styles/variables.scss";
+
+.containerVideo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.iframe {
+  position: relative;
+  background-color: $bodyBackgroundColor;
+  border-radius: 8px;
+  width: 710px;
+  height: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.textPrevue {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  display: flex;
+  align-items: center;
+  color: $whiteColor;
+  font-weight: 500;
+  font-size: 20px;
+  z-index: 900;
+}
+
+.errorStyles {
+  left: 30%;
+}
+
+.videoYouTube {
+  width: 80px;
+  margin-left: 10px;
+}
+
+.sliderBackImages {
+  margin-top: 50px;
+}

@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { moviesTypes } from "../types";
+
 export const BASEURL = "https://api.themoviedb.org/3";
 export const IMAGEURL = "https://image.tmdb.org/t/p/w780/";
 
@@ -9,7 +11,9 @@ export const movies = axios.create({
   baseURL: `${BASEURL}`,
 });
 
-async function getMoviesRequest(page: number): Promise<any | undefined> {
+async function getMoviesRequest(
+  page: number
+): Promise<moviesTypes.MoviesItem[] | undefined> {
   try {
     let response = await movies.get(
       `/trending/movie/day${API_KEY}&page=${page}`
@@ -25,7 +29,7 @@ async function getMoviesRequest(page: number): Promise<any | undefined> {
     }
   }
 }
-async function getMoviesGenre(): Promise<any | undefined> {
+async function getMoviesGenre(): Promise<moviesTypes.GenresType[] | undefined> {
   try {
     let response = await movies.get(
       `/genre/movie/list${API_KEY}&language=en-US`
@@ -41,7 +45,9 @@ async function getMoviesGenre(): Promise<any | undefined> {
     }
   }
 }
-async function getMovie(id: string): Promise<any | undefined> {
+async function getMovie(
+  id: string
+): Promise<moviesTypes.OneMovieType | undefined> {
   try {
     let response = await movies.get(`/movie/${id}${API_KEY}&language=en-US`);
     return response.data;
@@ -56,7 +62,9 @@ async function getMovie(id: string): Promise<any | undefined> {
   }
 }
 
-async function getCredits(id: string): Promise<any | undefined> {
+async function getCredits(
+  id: string
+): Promise<moviesTypes.CreditsType | undefined> {
   try {
     let response = await movies.get(
       `/movie/${id}/credits${API_KEY}&language=en-US`
@@ -72,7 +80,9 @@ async function getCredits(id: string): Promise<any | undefined> {
     }
   }
 }
-async function getImages(id: string): Promise<any | undefined> {
+async function getImages(
+  id: string
+): Promise<moviesTypes.ImagesType | undefined> {
   try {
     let response = await movies.get(`/movie/${id}/images${API_KEY}`);
     return response.data;
@@ -87,9 +97,28 @@ async function getImages(id: string): Promise<any | undefined> {
   }
 }
 
-async function getVideos(id: string): Promise<any | undefined> {
+async function getVideos(
+  id: string
+): Promise<moviesTypes.VideosType[] | undefined> {
   try {
     let response = await movies.get(`/movie/${id}/videos${API_KEY}`);
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+    if (axios.isCancel(error)) {
+      return Promise.reject();
+    } else {
+      console.log("Error", error);
+      return;
+    }
+  }
+}
+
+async function getReviews(
+  id: string
+): Promise<moviesTypes.ReviewsType[] | undefined> {
+  try {
+    let response = await movies.get(`/movie/${id}/reviews${API_KEY}`);
     return response.data.results;
   } catch (error) {
     console.log(error);
@@ -109,4 +138,5 @@ export {
   getCredits,
   getImages,
   getVideos,
+  getReviews,
 };

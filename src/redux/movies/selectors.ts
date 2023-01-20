@@ -18,6 +18,9 @@ export const getPosters = (state: RootState) =>
 export const getBackImg = (state: RootState) =>
   state.movies.moviesTrendsReducer.backImg;
 
+export const getReviews = (state: RootState) =>
+  state.movies.moviesTrendsReducer.reviews;
+
 export const getVideos = (state: RootState) => state.movies.videoReducer.videos;
 
 export const loadingVideo = (state: RootState) =>

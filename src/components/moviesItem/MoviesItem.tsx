@@ -1,37 +1,17 @@
 import { Link } from "react-router-dom";
 
+import { moviesTypes } from "../../types";
 import { IMAGEURL } from "../../API/APImovies";
-import starFull from "../../images/starFull.png";
-import starHalf from "../../images/starHalf.png";
-import starZero from "../../images/starZero.png";
+
+import noPicture from "../../images/noPicture.png";
+
+import { StarsRage } from "../";
 
 import styles from "./MoviesItem.module.scss";
 
 interface MoviesItemsProps {
-  data: {
-    poster_path: string | null;
-    adult: boolean;
-    overview: string;
-    release_date: string;
-    genre_ids: number[];
-    id: number;
-    original_title: string;
-    original_language: string;
-    title: string;
-    backdrop_path: string | null;
-    popularity: number;
-    vote_count: number;
-    video: boolean;
-    vote_average: number;
-    total_pages: number;
-    total_results: number;
-  };
-  genres: [
-    {
-      id: number;
-      name: string;
-    }
-  ];
+  data: moviesTypes.MoviesItem;
+  genres: moviesTypes.GenresType[];
 }
 
 const MoviesItem: React.FC<MoviesItemsProps> = ({ data, genres }) => {
@@ -66,6 +46,9 @@ const MoviesItem: React.FC<MoviesItemsProps> = ({ data, genres }) => {
             className={styles.image}
             src={`${IMAGEURL}${poster_path}`}
             alt={title || original_title}
+            onError={(e: React.ChangeEvent<HTMLImageElement>): void => {
+              e.target.src = noPicture;
+            }}
           />
         )}
       </div>
@@ -79,19 +62,7 @@ const MoviesItem: React.FC<MoviesItemsProps> = ({ data, genres }) => {
           <p>{releaseDate}</p>
           <div className={styles.containerStar}>
             <p className={styles.rage}>{rage !== "0.0" ? rage : "No rate"}</p>
-            {rage > "7" && (
-              <img className={styles.star} src={starFull} alt="star" />
-            )}
-            {rage < "7" && rage > "2" && rage !== "0.0" && (
-              <img className={styles.star} src={starHalf} alt="star" />
-            )}
-            {rage < "2" && (
-              <img
-                className={`${styles.star} ${styles.backgraund}`}
-                src={starZero}
-                alt="star"
-              />
-            )}
+            <StarsRage rage={rage} />
           </div>
         </div>
       </div>

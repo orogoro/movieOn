@@ -8,6 +8,10 @@ import SliderPoster from "./sliderPoster/SliderPoster";
 import Video from "./video/Video";
 import SliderBackImages from "./sliderBackImages/SliderBackImages";
 import Loader from "./loader/Loader";
+import Reviews from "./reviews/Reviews";
+import StarsRage from "./starsRage/StarsRage";
+import ContentMovies from "./contentMovies/ContentMovies";
+import VideoMoviesDetails from "./videoMoviesDetails/VideoMoviesDetails";
 
 export {
   Container,
@@ -20,4 +24,8 @@ export {
   Video,
   SliderBackImages,
   Loader,
+  Reviews,
+  StarsRage,
+  ContentMovies,
+  VideoMoviesDetails,
 };
