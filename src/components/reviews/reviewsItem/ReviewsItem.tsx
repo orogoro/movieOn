@@ -33,6 +33,8 @@ const ReviewsItem: React.FC<ReviewsItemProps> = ({ item }) => {
     setActive(true);
   };
 
+  console.log(item.content.length);
+
   return (
     <li className={styles.container}>
       <div className={styles.containerImage}>
@@ -54,18 +56,20 @@ const ReviewsItem: React.FC<ReviewsItemProps> = ({ item }) => {
           <p className={`${styles.text} ${active ? styles.active : ""}`}>
             {item.content}
           </p>
-          <div
-            className={`${styles.buttonHidden} ${
-              active ? styles.activeBTN : ""
-            } `}
-            onClick={handleClick}
-          >
-            {active ? (
-              <img className={styles.down} src={up} alt="up" />
-            ) : (
-              <img className={styles.down} src={down} alt="down" />
-            )}
-          </div>
+          {item.content.length > 450 && (
+            <div
+              className={`${styles.buttonHidden} ${
+                active ? styles.activeBTN : ""
+              } `}
+              onClick={handleClick}
+            >
+              {active ? (
+                <img className={styles.down} src={up} alt="up" />
+              ) : (
+                <img className={styles.down} src={down} alt="down" />
+              )}
+            </div>
+          )}
         </div>
       </div>
     </li>
