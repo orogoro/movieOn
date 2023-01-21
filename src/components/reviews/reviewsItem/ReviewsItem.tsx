@@ -23,7 +23,7 @@ const ReviewsItem: React.FC<ReviewsItemProps> = ({ item }) => {
       ? "0" + (date.getMonth() + 1)
       : date.getMonth() + 1;
   let dd = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-  const formattedToday = dd + "." + mm + "." + yyyy;
+  const formattedDate = dd + "." + mm + "." + yyyy;
 
   const handleClick = (): void => {
     if (active) {
@@ -32,8 +32,6 @@ const ReviewsItem: React.FC<ReviewsItemProps> = ({ item }) => {
     }
     setActive(true);
   };
-
-  console.log(item.content.length);
 
   return (
     <li className={styles.container}>
@@ -50,7 +48,7 @@ const ReviewsItem: React.FC<ReviewsItemProps> = ({ item }) => {
       <div className={styles.containerInfo}>
         <div className={styles.containerTitle}>
           <h3 className={styles.title}>{item.author}</h3>
-          <p>{formattedToday}</p>
+          <p>{formattedDate}</p>
         </div>
         <div className={styles.containerText}>
           <p className={`${styles.text} ${active ? styles.active : ""}`}>
