@@ -118,7 +118,9 @@ async function getReviews(
   id: string
 ): Promise<moviesTypes.ReviewsType[] | undefined> {
   try {
-    let response = await movies.get(`/movie/${id}/reviews${API_KEY}`);
+    let response = await movies.get(
+      `/movie/${id}/reviews${API_KEY}&language=en-US`
+    );
     return response.data.results;
   } catch (error) {
     console.log(error);

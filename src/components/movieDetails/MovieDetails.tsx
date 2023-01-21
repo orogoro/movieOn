@@ -45,7 +45,7 @@ const MovieDetails: React.FC = () => {
         errorVideo={errorVideo}
         backImg={backImg}
       />
-      <Reviews reviews={reviews} />
+      {reviews.length !== 0 && <Reviews reviews={reviews} />}
     </div>
   );
 };

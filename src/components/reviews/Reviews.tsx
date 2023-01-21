@@ -4,14 +4,16 @@ import { moviesTypes } from "../../types";
 
 import ReviewsItem from "./reviewsItem/ReviewsItem";
 
+import styles from "./Reviews.module.scss";
+
 interface ReviewsProps {
   reviews: moviesTypes.ReviewsType[];
 }
 
 const Reviews: React.FC<ReviewsProps> = ({ reviews }) => {
   return (
-    <div>
-      <ul>
+    <div className={styles.container}>
+      <ul className={styles.list}>
         {reviews.map((item) => (
           <ReviewsItem key={`${item.id}_${nanoid()}`} item={item} />
         ))}
