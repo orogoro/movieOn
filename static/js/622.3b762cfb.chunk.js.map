@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/622.3b762cfb.chunk.js","mappings":"uIAMA,UAJ6B,WAC3B,OAAO,SAAC,KAAM,GAChB,C","sources":["pages/SearchPage.tsx"],"sourcesContent":["import { Search } from \"../components\";\n\nconst SearchPage: React.FC = () => {\n  return <Search />;\n};\n\nexport default SearchPage;\n"],"names":[],"sourceRoot":""}
