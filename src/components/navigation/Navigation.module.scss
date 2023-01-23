@@ -1,12 +1,14 @@
 @import "../../styles/variables.scss";
 
 .header {
+  position: sticky;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   position: sticky;
   background-color: $headerBackgroundColor;
-  z-index: 999;
+  z-index: 1000;
 
   //   @media screen and (max-width: $mobileMedia) {
   //     padding: 10px 14px;

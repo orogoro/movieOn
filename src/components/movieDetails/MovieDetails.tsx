@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 
 import { useAppSelector, useAppDispatch } from "../../redux/hook";
@@ -19,17 +19,23 @@ const MovieDetails: React.FC = () => {
   const errorVideo = useAppSelector(selectors.errorgVideo);
   const reviews = useAppSelector(selectors.getReviews);
   const dispatch = useAppDispatch();
+  const getFetch = useRef<string | null>(null);
 
-  //dodelat zaprosy
   useEffect(() => {
     if (!itemId) {
       return;
     }
+    if (getFetch.current === itemId) {
+      return;
+    }
+
     dispatch(operations.fetchOneMovie(itemId));
     dispatch(operations.fetchImages(itemId));
     dispatch(operations.fetchCredits(itemId));
     dispatch(operations.fetchVideos(itemId));
     dispatch(operations.fetchReviews(itemId));
+
+    getFetch.current = itemId;
   }, [dispatch, itemId]);
 
   return (

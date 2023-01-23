@@ -4,6 +4,7 @@ import { moviesTypes } from "../../../types";
 import { SliderPoster } from "../../";
 
 import { IMAGEURL } from "../../../API/APImovies";
+import noPicture from "../../../images/noPicture.png";
 
 import styles from "./ContentMoviesImage.module.scss";
 
@@ -25,6 +26,9 @@ const ContentMoviesImage: React.FC<ContentMoviesImageProps> = ({
           className={styles.image}
           src={`${IMAGEURL}${manualMovie?.poster_path}`}
           alt={manualMovie?.title}
+          onError={(e: React.ChangeEvent<HTMLImageElement>): void => {
+            e.target.src = noPicture;
+          }}
         />
       )}
       {imagePoster && (
@@ -32,6 +36,9 @@ const ContentMoviesImage: React.FC<ContentMoviesImageProps> = ({
           className={styles.image}
           src={`${IMAGEURL}${imagePoster}`}
           alt={manualMovie?.title}
+          onError={(e: React.ChangeEvent<HTMLImageElement>): void => {
+            e.target.src = noPicture;
+          }}
         />
       )}
       {posters && (

@@ -1,6 +1,8 @@
 // import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
+import { Filter } from "../";
+
 import logo from "../../images/iconLogo.png";
 
 import styles from "./Navigation.module.scss";
@@ -39,6 +41,7 @@ const Navigation: React.FC = () => {
         </div>
 
         <div className={styles.container}>
+          <Filter />
           <NavLink
             to="/Login"
             className={({ isActive }) =>

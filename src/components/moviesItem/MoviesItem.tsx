@@ -24,7 +24,7 @@ const MoviesItem: React.FC<MoviesItemsProps> = ({ data, genres }) => {
     genre_ids,
     id,
   } = data;
-  const releaseDate = release_date.slice(0, 4);
+  const releaseDate = release_date?.slice(0, 4);
   const rage = vote_average.toFixed(1);
   const getGenres = genres.filter((item) => {
     return genre_ids.find((it) => item.id === it);
@@ -39,18 +39,16 @@ const MoviesItem: React.FC<MoviesItemsProps> = ({ data, genres }) => {
       : getGenres.map((item) => item.name).join(", ");
 
   return (
-    <Link className={styles.item} to={`${id}`}>
+    <Link className={styles.item} to={`/Movies/${id}`}>
       <div className={styles.containerImage}>
-        {poster_path && (
-          <img
-            className={styles.image}
-            src={`${IMAGEURL}${poster_path}`}
-            alt={title || original_title}
-            onError={(e: React.ChangeEvent<HTMLImageElement>): void => {
-              e.target.src = noPicture;
-            }}
-          />
-        )}
+        <img
+          className={styles.image}
+          src={`${IMAGEURL}${poster_path}`}
+          alt={title || original_title}
+          onError={(e: React.ChangeEvent<HTMLImageElement>): void => {
+            e.target.src = noPicture;
+          }}
+        />
       </div>
       <div className={styles.containerText}>
         <h2 className={styles.title}>{original_title}</h2>

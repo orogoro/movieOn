@@ -133,6 +133,26 @@ async function getReviews(
   }
 }
 
+async function getMoviesSearch(
+  search: string | null,
+  page: number
+): Promise<any> {
+  try {
+    let response = await movies.get(
+      `/search/movie${API_KEY}&query=${search}&language=en-US&page=${page}`
+    );
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+    if (axios.isCancel(error)) {
+      return Promise.reject();
+    } else {
+      console.log("Error", error);
+      return;
+    }
+  }
+}
+
 export {
   getMoviesRequest,
   getMoviesGenre,
@@ -141,4 +161,5 @@ export {
   getImages,
   getVideos,
   getReviews,
+  getMoviesSearch,
 };

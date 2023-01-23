@@ -12,6 +12,7 @@ import styles from "./Movies.module.scss";
 const Movies: React.FC = () => {
   const moviesList = useAppSelector(selectors.getMovies);
   const genres = useAppSelector(selectors.getGenres);
+  const movie = useAppSelector(selectors.getOneMovie);
   const dispatch = useAppDispatch();
   const [page, setPage] = useState<number>(1);
   const pageLoaded = useRef<number | null>(null);
@@ -31,7 +32,7 @@ const Movies: React.FC = () => {
     }
 
     dispatch(operations.fetchMovies(page));
-  }, [dispatch, genres, moviesList, page]);
+  }, [dispatch, genres, movie, moviesList, page]);
 
   const showNextMovies = () => {
     setPage(page + 1);

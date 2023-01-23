@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
 
-const moviesAction = createAction<[]>("movies/fetchMoviesAction");
+const moviesAction = createAction<[]>("movies/MoviesAction");
 
 export { moviesAction };

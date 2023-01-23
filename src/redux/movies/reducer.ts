@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   fetchMovies,
@@ -86,6 +87,7 @@ const videoReducer = createReducer(initialStateVideos, (builder) => {
       state.error = true;
     });
 });
+
 
 const moviesReducer = combineReducers({
   moviesTrendsReducer,

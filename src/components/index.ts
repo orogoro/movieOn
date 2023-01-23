@@ -12,6 +12,8 @@ import Reviews from "./reviews/Reviews";
 import StarsRage from "./starsRage/StarsRage";
 import ContentMovies from "./contentMovies/ContentMovies";
 import VideoMoviesDetails from "./videoMoviesDetails/VideoMoviesDetails";
+import Filter from "./filter/Filter";
+import Search from "./search/Search";
 
 export {
   Container,
@@ -28,4 +30,6 @@ export {
   StarsRage,
   ContentMovies,
   VideoMoviesDetails,
+  Filter,
+  Search,
 };
