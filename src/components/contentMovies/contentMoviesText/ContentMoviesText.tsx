@@ -12,7 +12,7 @@ const ContentMoviesText: React.FC<ContentMoviesTextProps> = ({
   return (
     <div className={styles.containerText}>
       <p className={styles.titleText}>{title}</p>
-      <p className={styles.text}>{content}</p>
+      <p className={styles.text}>{content ? content : "-"}</p>
     </div>
   );
 };

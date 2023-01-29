@@ -4,8 +4,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { toast } from "react-toastify";
 import { nanoid } from "nanoid";
 
-import { useAppSelector } from "../../redux/hook";
-import { selectors } from "../../redux/movies";
+import { useAppSelector, useAppDispatch } from "../../redux/hook";
+import { operations, selectors } from "../../redux/movies";
 import { getMoviesSearch } from "../../API/APImovies";
 import { Loader, MoviesItem } from "../";
 
@@ -17,7 +17,9 @@ const Search: React.FC = () => {
   const [endFix, setEndFix] = useState<boolean>(true);
   const genres = useAppSelector(selectors.getGenres);
   const { query } = useParams();
+  const dispatch = useAppDispatch();
   const prevQuery = useRef<string | null | undefined>(null);
+  console.log(genres);
 
   useEffect(() => {
     async function fetchFilms() {
@@ -48,8 +50,12 @@ const Search: React.FC = () => {
       fetchFilms();
     }
 
+    if (genres.length === 0) {
+      dispatch(operations.fetchGenre());
+    }
+
     prevQuery.current = query;
-  }, [query, page]);
+  }, [query, page, genres, dispatch]);
 
   const showNextMovies = () => {
     setPage(page + 1);

@@ -68,16 +68,20 @@ const ContentMovies: React.FC<ContentMoviesProps> = ({
 
         <div className={`${styles.containerText} ${styles.alineItemStart}`}>
           <p className={styles.titleText}>Cast</p>
-          <div className={styles.containerCast}>
-            {credits.slice(0, 20).map(({ id, name }, index) => (
-              <CastItem
-                key={id}
-                name={name}
-                id={id}
-                index={index === credits.slice(0, 20).length - 1}
-              />
-            ))}
-          </div>
+          {credits.length !== 0 ? (
+            <div className={styles.containerCast}>
+              {credits.slice(0, 20).map(({ id, name }, index) => (
+                <CastItem
+                  key={id}
+                  name={name}
+                  id={id}
+                  index={index === credits.slice(0, 20).length - 1}
+                />
+              ))}
+            </div>
+          ) : (
+            "-"
+          )}
         </div>
 
         <p className={styles.overview}>{manualMovie?.overview}</p>

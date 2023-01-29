@@ -21,10 +21,12 @@ const VideoMoviesDetails: React.FC<VideoMoviesDetailsProps> = ({
   const idVideos = videos[0]?.key;
 
   return (
-    <div className={styles.containerVideo}>
+    <div
+      className={`${styles.containerVideo} ${!idVideos && styles.displayNone}`}
+    >
       {!loading && (
         <div className={styles.iframe}>
-          {!errorVideo && <Video idVideos={idVideos} />}
+          {!errorVideo && idVideos && <Video idVideos={idVideos} />}
           <div
             className={`${styles.textPrevue} ${
               errorVideo ? styles.errorStyles : ""
@@ -39,9 +41,11 @@ const VideoMoviesDetails: React.FC<VideoMoviesDetailsProps> = ({
           </div>
         </div>
       )}
-      <div className={styles.sliderBackImages}>
-        <SliderBackImages images={backImg} />
-      </div>
+      {backImg.length !== 0 && (
+        <div className={styles.sliderBackImages}>
+          <SliderBackImages images={backImg} />
+        </div>
+      )}
     </div>
   );
 };

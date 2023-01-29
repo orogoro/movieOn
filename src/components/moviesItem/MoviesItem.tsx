@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { moviesTypes } from "../../types";
 import { IMAGEURL } from "../../API/APImovies";
 
-import noPicture from "../../images/noPicture.png";
+import noPicture from "../../images/noMovieFoto.png";
 
 import { StarsRage } from "../";
 
@@ -15,6 +16,7 @@ interface MoviesItemsProps {
 }
 
 const MoviesItem: React.FC<MoviesItemsProps> = ({ data, genres }) => {
+  const [error, setError] = useState<boolean>(false);
   const {
     poster_path,
     original_title,
@@ -38,24 +40,37 @@ const MoviesItem: React.FC<MoviesItemsProps> = ({ data, genres }) => {
           .join(", ")
       : getGenres.map((item) => item.name).join(", ");
 
+  console.log(nameGenres);
+
   return (
     <Link className={styles.item} to={`/Movies/${id}`}>
       <div className={styles.containerImage}>
         <img
-          className={styles.image}
+          className={`${styles.image} ${error ? styles.errorPicture : ""}`}
           src={`${IMAGEURL}${poster_path}`}
           alt={title || original_title}
           onError={(e: React.ChangeEvent<HTMLImageElement>): void => {
             e.target.src = noPicture;
+            setError(true);
           }}
         />
       </div>
       <div className={styles.containerText}>
-        <h2 className={styles.title}>{original_title}</h2>
+        <h2 className={styles.title}>
+          {original_title.length > 50
+            ? original_title.slice(0, 45) + "..."
+            : original_title}
+        </h2>
+        {nameGenres && (
+          <div
+            className={`${styles.containerGenre} ${
+              original_title.length > 30 && styles.margin
+            }`}
+          >
+            <p className={styles.genres}>{nameGenres}</p>
+          </div>
+        )}
 
-        <div className={styles.containerGenre}>
-          <p className={styles.genres}>{nameGenres}</p>
-        </div>
         <div className={styles.containerRage}>
           <p>{releaseDate}</p>
           <div className={styles.containerStar}>
