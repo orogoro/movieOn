@@ -7,7 +7,7 @@ import { nanoid } from "nanoid";
 import { useAppSelector, useAppDispatch } from "../../redux/hook";
 import { operations, selectors } from "../../redux/movies";
 import { getMoviesSearch } from "../../API/APImovies";
-import { Loader, MoviesItem } from "../";
+import { Loader, MoviesItem, NotFound } from "../";
 
 import styles from "./Search.module.scss";
 
@@ -15,11 +15,12 @@ const Search: React.FC = () => {
   const [moviesSearch, setMoviesSearch] = useState<any[]>([]);
   const [page, setPage] = useState<number>(1);
   const [endFix, setEndFix] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const genres = useAppSelector(selectors.getGenres);
   const { query } = useParams();
   const dispatch = useAppDispatch();
   const prevQuery = useRef<string | null | undefined>(null);
-  console.log(genres);
+  const pageReff = useRef<number | null | undefined>(null);
 
   useEffect(() => {
     async function fetchFilms() {
@@ -32,12 +33,20 @@ const Search: React.FC = () => {
 
         if (results.length > 0) {
           setMoviesSearch((prevState) => [...prevState, ...results]);
-        } else {
+          setLoading(false);
+        }
+
+        if (results.length === 0) {
           toast.error("Not found");
+          setLoading(true);
         }
       } catch (error) {
         console.log(error);
       }
+    }
+
+    if (pageReff.current === page && prevQuery.current === query) {
+      return;
     }
 
     if (prevQuery.current !== query) {
@@ -46,40 +55,52 @@ const Search: React.FC = () => {
       setEndFix(true);
     }
 
-    if (query) {
+    if (prevQuery.current !== query && page === 1) {
+      pageReff.current = null;
+    }
+
+    if (query && pageReff.current !== page) {
       fetchFilms();
     }
 
+    prevQuery.current = query;
+    pageReff.current = page;
+  }, [query, page]);
+
+  useEffect(() => {
     if (genres.length === 0) {
       dispatch(operations.fetchGenre());
     }
-
-    prevQuery.current = query;
-  }, [query, page, genres, dispatch]);
+  }, [dispatch, genres]);
 
   const showNextMovies = () => {
-    setPage(page + 1);
+    if (moviesSearch.length !== 0) {
+      setPage(page + 1);
+    }
   };
 
   return (
     <div className={styles.container}>
-      <InfiniteScroll
-        dataLength={moviesSearch.length}
-        next={showNextMovies}
-        hasMore={endFix}
-        scrollThreshold={1}
-        loader={<Loader size={70} styles={styles.loader} />}
-      >
-        <ul className={styles.list}>
-          {moviesSearch.map((item) => (
-            <MoviesItem
-              key={`${item.id}_${nanoid()}`}
-              data={item}
-              genres={genres}
-            />
-          ))}
-        </ul>
-      </InfiniteScroll>
+      {!loading && (
+        <InfiniteScroll
+          dataLength={moviesSearch.length}
+          next={showNextMovies}
+          hasMore={endFix}
+          scrollThreshold={1}
+          loader={<Loader size={70} />}
+        >
+          <ul className={styles.list}>
+            {moviesSearch.map((item) => (
+              <MoviesItem
+                key={`${item.id}_${nanoid()}`}
+                data={item}
+                genres={genres}
+              />
+            ))}
+          </ul>
+        </InfiniteScroll>
+      )}
+      {loading && <NotFound />}
     </div>
   );
 };

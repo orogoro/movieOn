@@ -1,18 +1,15 @@
 import HashLoader from "react-spinners/HashLoader";
 
+import styles from "./Loader.module.scss";
+
 interface loaderProps {
   size: number;
-  styles: string;
 }
 
-const Loader: React.FC<loaderProps> = ({ size, styles }) => {
+const Loader: React.FC<loaderProps> = ({ size }) => {
   return (
-    <div className={styles}>
-      <HashLoader
-        color={"#f27c32"}
-        //   loading={loading}
-        size={size}
-      />
+    <div className={styles.container}>
+      <HashLoader color={"#f27c32"} size={size} />
     </div>
   );
 };

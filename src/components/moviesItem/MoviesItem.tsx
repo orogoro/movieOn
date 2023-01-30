@@ -40,8 +40,6 @@ const MoviesItem: React.FC<MoviesItemsProps> = ({ data, genres }) => {
           .join(", ")
       : getGenres.map((item) => item.name).join(", ");
 
-  console.log(nameGenres);
-
   return (
     <Link className={styles.item} to={`/Movies/${id}`}>
       <div className={styles.containerImage}>

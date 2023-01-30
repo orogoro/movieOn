@@ -14,6 +14,7 @@ import ContentMovies from "./contentMovies/ContentMovies";
 import VideoMoviesDetails from "./videoMoviesDetails/VideoMoviesDetails";
 import Filter from "./filter/Filter";
 import Search from "./search/Search";
+import NotFound from "./notFound/NotFound";
 
 export {
   Container,
@@ -32,4 +33,5 @@ export {
   VideoMoviesDetails,
   Filter,
   Search,
+  NotFound,
 };

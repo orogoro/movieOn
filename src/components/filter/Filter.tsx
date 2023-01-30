@@ -8,6 +8,7 @@ import styles from "./Filter.module.scss";
 
 const Filter: React.FC = () => {
   const [value, setValue] = useState<string>("");
+  const [disabled, setDisabled] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -16,11 +17,17 @@ const Filter: React.FC = () => {
 
   const handleSubmitForm = (e: React.ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    setDisabled(true);
+
+    setTimeout(() => {
+      setDisabled(false);
+    }, 1000);
 
     if (!value) {
-      toast.error("Not write");
+      toast.error("You didn't enter anything");
       return;
     }
+
     navigate(`/Search/${value}`);
   };
 
@@ -34,7 +41,7 @@ const Filter: React.FC = () => {
         value={value}
         onChange={handleChangeInput}
       />
-      <button className={styles.button}>
+      <button className={styles.button} disabled={disabled}>
         <img
           className={styles.image}
           src={magnifyingGlass}

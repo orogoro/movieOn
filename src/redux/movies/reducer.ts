@@ -16,11 +16,15 @@ import { moviesAction } from "./action";
 type MovieState = {
   data: any[];
   genres: [{ id: number; name: string }] | any;
+};
+
+type MovieManualState = {
   movie: null | any;
   credits: any[];
   posters: any[];
   backImg: any[];
   reviews: any[];
+  loading: boolean;
 };
 
 type VideoReducerTypes = {
@@ -32,11 +36,6 @@ type VideoReducerTypes = {
 const initialState: MovieState = {
   data: [],
   genres: [],
-  movie: null,
-  credits: [],
-  posters: [],
-  backImg: [],
-  reviews: [],
 };
 
 const moviesTrendsReducer = createReducer(initialState, (builder) => {
@@ -49,9 +48,29 @@ const moviesTrendsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchGenre.fulfilled, (state, { payload }) => {
       state.genres = [...payload];
-    })
+    });
+});
+
+const initialStateManual: MovieManualState = {
+  movie: null,
+  credits: [],
+  posters: [],
+  backImg: [],
+  reviews: [],
+  loading: false,
+};
+
+const movieManualReducer = createReducer(initialStateManual, (builder) => {
+  builder
     .addCase(fetchOneMovie.fulfilled, (state, { payload }) => {
       state.movie = payload;
+      state.loading = false;
+    })
+    .addCase(fetchOneMovie.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(fetchOneMovie.rejected, (state) => {
+      state.loading = false;
     })
     .addCase(fetchCredits.fulfilled, (state, { payload }) => {
       state.credits = [...payload?.cast];
@@ -88,9 +107,9 @@ const videoReducer = createReducer(initialStateVideos, (builder) => {
     });
 });
 
-
 const moviesReducer = combineReducers({
   moviesTrendsReducer,
+  movieManualReducer,
   videoReducer,
 });
 

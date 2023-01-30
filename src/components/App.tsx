@@ -14,7 +14,7 @@ const App: React.FC = () => {
     <>
       <Navigation />
       <Container>
-        <Suspense fallback={<Loader size={70} styles={""} />}>
+        <Suspense fallback={<Loader size={70} />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="Movies" element={<Movies />} />
@@ -26,7 +26,7 @@ const App: React.FC = () => {
         </Suspense>
         <ToastContainer
           position="top-right"
-          autoClose={3000}
+          autoClose={2000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

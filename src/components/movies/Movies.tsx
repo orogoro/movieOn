@@ -45,7 +45,7 @@ const Movies: React.FC = () => {
         next={showNextMovies}
         hasMore={moviesList.length < 20 ? false : true}
         scrollThreshold={1}
-        loader={<Loader size={70} styles={styles.loader} />}
+        loader={<Loader size={70} />}
       >
         <ul className={styles.list}>
           {moviesList.map((item) => (

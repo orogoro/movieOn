@@ -15,6 +15,7 @@ const MovieDetails: React.FC = () => {
   const posters = useAppSelector(selectors.getPosters);
   const backImg = useAppSelector(selectors.getBackImg);
   const videos = useAppSelector(selectors.getVideos);
+  const loadingManual = useAppSelector(selectors.getLoadingManual);
   const loading = useAppSelector(selectors.loadingVideo);
   const errorVideo = useAppSelector(selectors.errorgVideo);
   const reviews = useAppSelector(selectors.getReviews);
@@ -40,18 +41,22 @@ const MovieDetails: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <ContentMovies
-        manualMovie={manualMovie}
-        credits={credits}
-        posters={posters}
-      />
-      <VideoMoviesDetails
-        videos={videos}
-        loading={loading}
-        errorVideo={errorVideo}
-        backImg={backImg}
-      />
-      {reviews.length !== 0 && <Reviews reviews={reviews} />}
+      {!loadingManual && (
+        <>
+          <ContentMovies
+            manualMovie={manualMovie}
+            credits={credits}
+            posters={posters}
+          />
+          <VideoMoviesDetails
+            videos={videos}
+            loading={loading}
+            errorVideo={errorVideo}
+            backImg={backImg}
+          />
+          {reviews.length !== 0 && <Reviews reviews={reviews} />}
+        </>
+      )}
     </div>
   );
 };
